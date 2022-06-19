@@ -2,6 +2,10 @@
 
 어떤 프론트엔드 프레임워크가 최고인지 투표를 할 수 있는 간단한 토이 프로젝트
 
+### 시연 영상
+
+![Frontend_Framework_Vote](https://user-images.githubusercontent.com/93081720/174489927-586815e7-f63b-4c8b-b343-9921ec6fc258.gif)
+
 <br>
 
 ## 기획
