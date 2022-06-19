@@ -1,4 +1,2 @@
-# yolo_test
-yolo_test
-
-yolo_test2
+# Toy_Projects
+토이 프로젝트 및 코딩 연습한 내용을 정리/업로드하는 레포지토리
