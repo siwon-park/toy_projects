@@ -16,6 +16,7 @@
 
 - 22.06.24 - 프로젝트 디렉토리 생성, README 작성 등
 - 22.06.25 - 프로젝트 빌드 생성, HelloControllerTest, HelloResponseDtoTest 등 Chapter02 완료
+- 22.06.26 - Chapter03 완료
 
 <br>
 
@@ -58,7 +59,12 @@
 
 <br>
 
+- #### H2 콘솔이 로컬호스트에서 열리지 않음
 
+  - 이전에 했던 셋팅을 따라했는데도 404 에러가 발생함
+  - (해결) 구글링을 해보니 해당 내용을 build.gradle에 추가해줘야했음
+
+![image](https://user-images.githubusercontent.com/93081720/175800610-de107dcd-f68b-464d-b9ca-fcb31a96b044.png)
 
 <br>
 
@@ -69,5 +75,7 @@
 <br>
 
 ### 🧠배운점
+
+[배운점](https://github.com/siwon-park/Toy_Projects/blob/master/01_SpringBoot_with_AWS/%EB%B0%B0%EC%9A%B4%EC%A0%90.md)
 
 <br>	

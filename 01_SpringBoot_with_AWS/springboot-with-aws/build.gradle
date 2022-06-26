@@ -33,8 +33,11 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-devtools' //h2-console 이 안 보여서 적용함
     implementation 'org.projectlombok:lombok:1.18.20' // lombok 플러그인 적용
     annotationProcessor ('org.projectlombok:lombok:1.18.20') // 컴파일 시 lombok 적용
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // spring-starter-data-jpa 적용
+    runtimeOnly 'com.h2database:h2'
 //    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 //    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
