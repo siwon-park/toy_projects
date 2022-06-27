@@ -17,6 +17,7 @@
 - 22.06.24 - 프로젝트 디렉토리 생성, README 작성 등
 - 22.06.25 - 프로젝트 빌드 생성, HelloControllerTest, HelloResponseDtoTest 등 Chapter02 완료
 - 22.06.26 - Chapter03 완료
+- 22.06.27 - Chapter04 완료
 
 <br>
 
