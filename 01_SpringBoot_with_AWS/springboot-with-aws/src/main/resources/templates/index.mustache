@@ -4,6 +4,15 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                <!-- 머스태치는 if/else 구문이 없음 #/^을 통해 true/false를 판단함 -->
+                {{#userName}} <!-- # => userName이 있으면 -->
+                    Logged in as: <span id="user">{{userName}}</span>
+                    <!-- /logout은 스프링 시큐리티에서 기본적으로 제공해주는 로그아웃 url임 -->
+                    <a href="/logout" class="btn btn-info active" role="button">로그 아웃</a>
+                {{/userName}}
+                {{^userName}}  <!-- ^ => userName이 없으면 -->
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">구글 로그인</a>
+                {{/userName}}
             </div>
         </div>
         <br>
