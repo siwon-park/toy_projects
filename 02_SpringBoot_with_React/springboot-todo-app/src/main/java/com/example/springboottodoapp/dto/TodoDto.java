@@ -1,6 +1,6 @@
 package com.example.springboottodoapp.dto;
 
-import com.example.springboottodoapp.model.Todo;
+import com.example.springboottodoapp.model.TodoEntity;
 import lombok.*;
 
 @Getter
@@ -12,7 +12,7 @@ public class TodoDto {
     private boolean done;
 
     @Builder
-    public TodoDto(final Todo entity) {
+    public TodoDto(final TodoEntity entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.done = entity.isDone();

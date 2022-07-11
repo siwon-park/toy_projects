@@ -7,7 +7,8 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @Getter
-public class Todo {
+@Table(name="Todo")
+public class TodoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +23,7 @@ public class Todo {
     private boolean done;
 
     @Builder
-    public Todo(String title, String username, boolean done) {
+    public TodoEntity(String title, String username, boolean done) {
         super(); // 매개변수가 없는 생성자를 상속받음(NoArgsConstructor를 통해 생성됨)
         this.title = title;
         this.username = username;
