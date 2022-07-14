@@ -23,8 +23,16 @@ public class TodoEntity {
     private boolean done;
 
     @Builder
-    public TodoEntity(String title, String username, boolean done) {
+    public TodoEntity(Long id, String title, String username, boolean done) {
         super(); // 매개변수가 없는 생성자를 상속받음(NoArgsConstructor를 통해 생성됨)
+        this.id = id;
+        this.title = title;
+        this.username = username;
+        this.done = done;
+    }
+
+    // update용
+    public void update(String title, String username, boolean done) {
         this.title = title;
         this.username = username;
         this.done = done;
