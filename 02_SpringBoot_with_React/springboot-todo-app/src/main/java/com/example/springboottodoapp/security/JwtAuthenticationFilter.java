@@ -25,7 +25,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter { // JWT인증 필터
 
-    private TokenProvider tokenProvider;
+    private final TokenProvider tokenProvider;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -42,7 +42,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // JWT인증
 
                 // 인증 완료. SecurityContextHolder에 등록해야 인증된 사용자
                 AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        userId, // 인증된 사용자의 정보. 문자열이 아니어도 됨. 보통은 UserDetails라는 오브젝를 넣음
+                        // 인증된 사용자의 정보. 문자열이 아니어도 됨. 보통은 UserDetails라는 오브젝를 넣음
+                        userId, // <- AuthenticationPrincipal
                         null,
                         AuthorityUtils.NO_AUTHORITIES
                 );

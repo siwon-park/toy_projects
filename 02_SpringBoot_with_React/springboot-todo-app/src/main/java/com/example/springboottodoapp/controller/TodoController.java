@@ -6,6 +6,7 @@ import com.example.springboottodoapp.model.TodoEntity;
 import com.example.springboottodoapp.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,14 +29,15 @@ public class TodoController {
         return ResponseEntity.ok().body(responseDto);
     }
 
-    @PostMapping
-    public ResponseEntity<?> createTodo(@RequestBody TodoDto todoDto) {
+    @PostMapping // 생성
+    public ResponseEntity<?> createTodo(
+            @AuthenticationPrincipal String userId,
+            @RequestBody TodoDto todoDto) {
         try {
-            String tempUserName = "temp-user";
             // todoDto를 Entity로 변환함(toEntity 메서드를 사용하지 않고 빌드패턴을 이용)
             TodoEntity todoEntity = TodoEntity.builder()
                     .id(null) // 최초 생성 당시 id는 null로 초기화
-                    .username(tempUserName)
+                    .username(userId)
                     .title(todoDto.getTitle())
                     .done(todoDto.isDone())
                     .build();
@@ -59,12 +61,12 @@ public class TodoController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<?> retrieveTodoList() {
-        String tempUserName = "temp-user";
+    @GetMapping // 검색
+    public ResponseEntity<?> retrieveTodoList(
+            @AuthenticationPrincipal String userId) {
 
         // 서비스의 retrieve 메서드를 사용해 Todo리스트를 가져옴
-        List<TodoEntity> todoEntities = todoService.retrieve(tempUserName);
+        List<TodoEntity> todoEntities = todoService.retrieve(userId);
         
         // 자바 스트림을 이용해 반환된 엔티티 리스트를 TodoDto리스트로 변환
         List<TodoDto> todoDtos = todoEntities.stream().map(TodoDto::new).collect(Collectors.toList());
@@ -75,15 +77,16 @@ public class TodoController {
         return ResponseEntity.ok().body(responseDto);
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateTodo(@RequestBody TodoDto todoDto) {
-        String tempUserName = "temp-user";
+    @PutMapping // 업데이트
+    public ResponseEntity<?> updateTodo(
+            @AuthenticationPrincipal String userId,
+            @RequestBody TodoDto todoDto) {
 
         // dto를 entity로 변환
         TodoEntity todoEntity = TodoEntity.builder()
                 .id(todoDto.getId())
                 .title(todoDto.getTitle())
-                .username(tempUserName)
+                .username(userId)
                 .done(todoDto.isDone())
                 .build();
 
@@ -99,16 +102,17 @@ public class TodoController {
         return ResponseEntity.ok().body(responseDto);
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteTodo(@RequestBody TodoDto todoDto) {
+    @DeleteMapping // 삭제
+    public ResponseEntity<?> deleteTodo(
+            @AuthenticationPrincipal String userId,
+            @RequestBody TodoDto todoDto) {
         try {
-            String tempUserName = "temp-user";
 
             // dto를 entity로 변환
             TodoEntity todoEntity = TodoEntity.builder()
                     .id(todoDto.getId())
                     .title(todoDto.getTitle())
-                    .username(tempUserName)
+                    .username(userId)
                     .done(todoDto.isDone())
                     .build();
             

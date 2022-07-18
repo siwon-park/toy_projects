@@ -17,5 +17,18 @@ export function call(api, method, request) {
       return Promise.reject(json)
     }
     return json
-  }))
+  })).catch((error) => {
+    console.log(error.status)
+    if (error.status === 403) { // 403 forbidden이면
+      window.location.href = "/login" // 로그인 페이지로 리다이렉트
+    }
+    return Promise.reject(error)
+  })
+}
+
+export function signin(userDto) {
+  return call("/auth/signin", "POST", userDto).then((res) => {
+    console.log("response: ", res)
+    alert("로그인 토큰: " + res.token)
+  })
 }

@@ -46,18 +46,18 @@ public class TokenProvider {
                 // 만료 시간 설정(Date 타입만 가능)
                 .setExpiration(expiryDate)
                 // 토큰 제목
-                .setSubject(userEntity.getUsername())
+                .setSubject(userEntity.getId())
                 // 비공개 클레임(key-value)설정(민감한 정보는 claim에 넣어선 안 됨)
-                .claim("email", "zow77@naver.com")
+//                .claim("email", "zow777@naver.com")
                 .compact();
     }
 
-    // 토큰 검증 메서드(검증 후, userId를 반환
+    // 토큰 검증 메서드(검증 후, userId를 반환)
     public String validateAndGetUserId(String token) {
         // 위조되지 않았다면 페이로드(Claims)를 반환하고, 위조라면 예외를 날림
         Claims claims = Jwts.parser()
                 // 헤더와 페이로드를 setSigningKey로 넘어온 SECRET_KEY를 이용해 서명한 후 token의 서명과 비교
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey(SECRET_KEY.getBytes()) // getBytes() 필수
                 // parseClaimJws 메서드가 Base64로 디코딩 및 파싱함
                 .parseClaimsJws(token)
                 // 검증 후 반환받는 값이 userId이므로 getBody를 사용함
