@@ -34,8 +34,9 @@ function App() {
   // }, [fetchTodoListHandler])
 
   useEffect(() => {
-    call("/todo", "GET", null).then(res => 
+    call("/todo", "GET", null).then(res => {
       setTodoItems(res.data)
+    }
     )
   }, [])
 

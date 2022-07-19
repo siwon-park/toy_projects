@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // JWT인증
 
                 // 인증 완료. SecurityContextHolder에 등록해야 인증된 사용자
                 AbstractAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                        // 인증된 사용자의 정보. 문자열이 아니어도 됨. 보통은 UserDetails라는 오브젝를 넣음
+                        // 인증된 사용자의 정보. 문자열이 아니어도 됨. 보통은 UserDetails라는 오브젝트를 넣음
                         userId, // <- AuthenticationPrincipal
                         null,
                         AuthorityUtils.NO_AUTHORITIES

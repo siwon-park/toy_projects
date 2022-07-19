@@ -25,7 +25,7 @@ public class UserController {
 
     private final TokenProvider tokenProvider;
 
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     
     @PostMapping("/signup") // 회원가입
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
