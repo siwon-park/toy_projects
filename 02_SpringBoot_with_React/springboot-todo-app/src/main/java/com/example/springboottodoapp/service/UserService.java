@@ -40,7 +40,7 @@ public class UserService {
     // 로그인 인증(패스워드 일치 여부 추가)
     public UserEntity getByCredentials(final String email, final String password, final BCryptPasswordEncoder encoder) {
         final UserEntity originalUser = userRepository.findByEmail(email);
-        System.out.println(password.equals(originalUser.getPassword())); // false(encode하지 않았다면 true)
+//        System.out.println(password.equals(originalUser.getPassword())); // false(encode하지 않았다면 true)
         // 책에서는 회원가입에서 패스워드를 encode해서 넣어야하는데 그렇게 하지 않고있기 때문에 equals를 사용함
         if (originalUser != null && encoder.matches(password, originalUser.getPassword())) {
             return originalUser;

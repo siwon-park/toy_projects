@@ -6,6 +6,7 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Jwts;
 
@@ -21,12 +22,13 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class TokenProvider {
 
-    private String SECRET_KEY = "random_secret_key"; // 시크릿 키 설정(문자열 아무거나 지정후 인코딩하여 사용할 예정)
+    @Value("${jwt.password}")
+    private String secretKey; // 시크릿 키 설정(문자열 아무거나 지정후 인코딩하여 사용할 예정)
 
-    @PostConstruct
-    protected void init() {
-        SECRET_KEY = Base64.getEncoder().encodeToString(SECRET_KEY.getBytes());
-    }
+//    @PostConstruct
+//    protected void init() {
+//        SECRET_KEY = Base64.getEncoder().encodeToString(SECRET_KEY.getBytes());
+//    }
 
     // 토큰 생성 메서드
     public String createJWT(UserEntity userEntity) {
@@ -37,7 +39,7 @@ public class TokenProvider {
         return Jwts.builder()
                 // 헤더의 타입(typ)을 지정. jwt를 사용하기 때문에 Header.JWT_TYPE를 적용
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
-                .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(SECRET_KEY.getBytes())) // 알고리즘, 시크릿 키
+                .signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encodeToString(secretKey.getBytes())) // 알고리즘, 시크릿 키
                 // 페이로드에 들어갈 내용들
                 // 토큰 발급자를 설정(앱이름으로 설정하였음)
                 .setIssuer("SpringbootTodoApp")
@@ -57,7 +59,7 @@ public class TokenProvider {
         // 위조되지 않았다면 페이로드(Claims)를 반환하고, 위조라면 예외를 날림
         Claims claims = Jwts.parser()
                 // 헤더와 페이로드를 setSigningKey로 넘어온 SECRET_KEY를 이용해 서명한 후 token의 서명과 비교
-                .setSigningKey(SECRET_KEY.getBytes()) // getBytes() 필수
+                .setSigningKey(Base64.getEncoder().encodeToString(secretKey.getBytes())) // getBytes() 필수
                 // parseClaimJws 메서드가 Base64로 디코딩 및 파싱함
                 .parseClaimsJws(token)
                 // 검증 후 반환받는 값이 userId이므로 getBody를 사용함

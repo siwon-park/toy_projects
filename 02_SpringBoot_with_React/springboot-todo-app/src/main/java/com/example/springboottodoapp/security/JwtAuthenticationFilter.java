@@ -33,10 +33,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // JWT인증
             // 요청에서 토큰 가져오기
             String token = parseBearerToken(request);
             log.info("Filter is Running...");
-
+//            System.out.println("here!!!!!!!!!!!!");
+//            System.out.println(token);
             // 토큰 검사하기(JWT이므로 인가 서버에 요청하지 않고도 검증 가능) // equalsIgnoreCase: 대소문자 구분없이 문자열 비교
             if (token != null && !token.equalsIgnoreCase("null")) {
                 // userId 가져오기(위조된 경우 예외처리 됨)
+
                 String userId = tokenProvider.validateAndGetUserId(token);
                 log.info("Authenticated user ID: " + userId);
 
@@ -61,8 +63,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter { // JWT인증
 
     private String parseBearerToken(HttpServletRequest request) { // 토큰의 앞 부분인 Bearer를 제거하는 메서드
         String bearerToken = request.getHeader("Authorization");
-
+//        System.out.println("This!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(bearerToken);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            System.out.println(bearerToken.substring(7));
             return bearerToken.substring(7);
         }
         return null;

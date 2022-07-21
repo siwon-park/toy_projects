@@ -9,7 +9,12 @@ export function call(api, method, request) {
 
   const accessToken = localStorage.getItem("ACCESS_TOKEN")
   if (accessToken && accessToken !== null) {
-    headers.append("Authorization", "Bearer " + accessToken)
+    headers = new Headers({
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + accessToken
+    });
+    // append를 하면 안됐었음. 계속 헤더에 해당값을 추가함
+    // headers.append("Authorization", "Bearer " + accessToken)
   }
 
   let options = {
