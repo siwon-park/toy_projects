@@ -124,4 +124,6 @@
 
 책이 좋진 않았지만, 물론 버그를 수정하는 과정에서 많이 배웠다.
 
+[배운점 정리](https://github.com/siwon-park/Toy_Projects/blob/master/02_SpringBoot_with_React/%EB%B0%B0%EC%9A%B4%EC%A0%90.md)
+
 <br>
