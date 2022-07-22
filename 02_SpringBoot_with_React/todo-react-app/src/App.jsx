@@ -1,13 +1,15 @@
 import './App.css';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Todo from './components/Todo/Todo'
-import { Paper, List, Container } from '@mui/material'
+import { Paper, List, Container} from '@mui/material'
 import AddTodo from './components/Todo/AddTodo';
 import { call } from './service/ApiService';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [todoItems, setTodoItems] = useState([])
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   // const fetchTodoListHandler = useCallback( async () => {
   //   const requestOptions = {
@@ -36,8 +38,9 @@ function App() {
   useEffect(() => {
     call("/todo", "GET", null).then(res => {
       setTodoItems(res.data)
+      setLoading(false)
     }
-    )
+    ).catch((error) => window.location.href = "/login" )
   }, [])
 
   const addTodo = (item) => {
@@ -133,17 +136,20 @@ function App() {
           ></Todo>
         ))}
       </List>
-
     </Paper>
   )
 
   return (
     <div className="App">
-      <Container maxWidth="md">
-        <AddTodo addTodo={addTodo}></AddTodo>
-        {error && <div>{error}</div>}
-        {!error && <div className='TodoList'>{todoItemsList}</div>}
-      </Container>
+      {loading && <h1>로딩중...</h1>}
+      {!loading && <div>
+        <Navbar></Navbar>
+        <Container maxWidth="md">
+          <AddTodo addTodo={addTodo}></AddTodo>
+          {error && <div>{error}</div>}
+          {!error && <div className='TodoList'>{todoItemsList}</div>}
+        </Container>
+        </div>}
     </div>
   );
 }

@@ -5,6 +5,7 @@ let headers = new Headers({
   "Content-Type": "application/json",
 });
 
+// 범용적으로 사용할 call함수
 export function call(api, method, request) {
 
   const accessToken = localStorage.getItem("ACCESS_TOKEN")
@@ -34,6 +35,7 @@ export function call(api, method, request) {
     }
     return json
   })).catch((error) => {
+    console.log(error)
     console.log(error.status)
     if (error.status === 403) { // 403 forbidden이면
       window.location.href = "/login" // 로그인 페이지로 리다이렉트
@@ -42,6 +44,7 @@ export function call(api, method, request) {
   })
 }
 
+// 로그인
 export function signin(userDto) {
   return call("/auth/signin", "POST", userDto).then((res) => {
     // console.log("response: ", res)
@@ -53,7 +56,13 @@ export function signin(userDto) {
   })
 }
 
+// 로그아웃
 export function signout() {
   localStorage.setItem(ACCESS_TOKEN, null)
   window.location.href = "/login"
+}
+
+// 회원가입
+export function signup(userDto) {
+  return call("/auth/signup", "POST", userDto)
 }

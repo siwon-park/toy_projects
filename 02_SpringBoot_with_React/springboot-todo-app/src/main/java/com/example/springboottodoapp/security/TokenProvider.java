@@ -24,6 +24,7 @@ public class TokenProvider {
 
     @Value("${jwt.password}")
     private String secretKey; // 시크릿 키 설정(문자열 아무거나 지정후 인코딩하여 사용할 예정)
+    // application.properties에 jwt.password="아무 문자열"과 같은 방식으로 정의하지 않으면 톰캣이 열리지 않음
 
 //    @PostConstruct
 //    protected void init() {

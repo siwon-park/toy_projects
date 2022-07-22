@@ -1,10 +1,11 @@
 import React from "react";
 import "./index.css";
 import App from "./App";
-import Login from "./Login";
+import Login from "./components/Login/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {Box} from "@mui/material";
 import {Typography} from "@mui/material";
+import SignUp from "./components/SignUp/SignUp";
 
 const Copyright = () => {
   return (
@@ -28,6 +29,8 @@ const AppRouter = () => {
         <div>
           <Routes>
             <Route path="/login" element={<Login/>}>
+            </Route>
+            <Route path="/signup" element={<SignUp/>}>
             </Route>
             <Route path="/" element={<App/>}>
             </Route>
