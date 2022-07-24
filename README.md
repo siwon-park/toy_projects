@@ -7,5 +7,6 @@
 | 01   | [스프링부트와 AWS로 혼자 구현하는 웹 서비스](https://github.com/siwon-park/Toy_Projects/tree/master/01_SpringBoot_with_AWS) | ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=flat&logo=spring&logoColor=white) | 클론 코딩 |
 | 02   | [React.js, 스프링부트, AWS로 배우는 웹 개발 101](https://github.com/siwon-park/Toy_Projects/tree/master/02_SpringBoot_with_React) | ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=flat&logo=spring&logoColor=white)![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB) | 클론 코딩 |
 | 03   | [React 시작하기 - Tic Tac Toe 게임 만들기](https://github.com/siwon-park/Toy_Projects/tree/master/03_React_Tic_Tac_Toe) | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB) | 클론 코딩 |
+| 04   | [Django와 React로 구현하는 웹 커뮤니티](https://github.com/siwon-park/Toy_Projects/tree/master/04_Django_React_Web_Community) | ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=flat&logo=django&logoColor=white)![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB) | 직접 기획 |
 
 <br>
