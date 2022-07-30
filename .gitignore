@@ -5,6 +5,7 @@
 *.assets/
 imgs/
 *.zip
+secrets.json
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
