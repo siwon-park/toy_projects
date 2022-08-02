@@ -45,6 +45,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Local Apps
+    'accounts',
+    'articles',
 
     # Third-Party Apps
     'corsheaders',
@@ -52,9 +54,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socailaccount.providers.google',
-    'allauth.socailaccount.providers.kakao',
-    'allauth.socailaccount.providers.naver',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
 
     # Django Basic
     'django.contrib.admin',
