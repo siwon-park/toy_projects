@@ -156,6 +156,9 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 커스텀 유저 모델을 사용함
+AUTH_USER_MODEL = 'accounts.User'
+
 # CORS 허용
 CORS_ALLOWED_ORIGIN = [
     # React Local Host
