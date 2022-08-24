@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os, json
 from django.core.exceptions import ImproperlyConfigured 
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,13 +51,24 @@ INSTALLED_APPS = [
 
     # Third-Party Apps
     'corsheaders',
-    'rest_framework',
+
+    # allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
     'allauth.socialaccount.providers.naver',
+
+    #rest_framework
+    'rest_framework', # rest_framework
+    'rest_framework_simplejwt', # 필수는 아니지만, localizaition/translations을 사용하려면 추가(뭔말인지 이해x)
+    'rest_framework_simplejwt.token_blacklist', # 필요없는 token이나 해킹된 token을 서버에서 사용할 수 없도록 보안을 높일 수 있는 앱
+    'rest_framework.authtoken',
+
+    # DRF auth
+    'dj_rest_auth', # sign 제외 auth
+    'dj_rest_auth.registration', # signup
 
     # Django Basic
     'django.contrib.admin',
@@ -165,3 +177,22 @@ CORS_ALLOWED_ORIGIN = [
     'http://localhost:3000'
 ]
 # CORS_ALLOW_ALL_ORIGIN = True
+
+# REST_FRAMEWORK JWT 기본 세팅
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+# JWT 세팅 추가(공식 문서를 보고 항목을 추가하여 커스텀하면 된다)
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5), # Access 토큰의 유효기간을 5분으로 설정함
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1), # Refresh 토큰의 유효기간을 1일로 설정함
+    'ROTATE_REFRESH_TOKENS': False, # True로 설정하면, refresh token을 보내면 새로운 refresh token과 access token이 반환됨
+    'BLACKLIST_AFTER_ROTATION': True, # third party app에 rest_framework_simplejwt.token_blacklist가 있어야 사용 가능. True로 설정 시 보내진 refresh token을 더 이상 사용할 수 없도록 블랙리스트에 등록함
+    'ALGORITHM': 'HS256', # 해시 알고리즘 설정
+    'SIGNING_KEY': SECRET_KEY, # Django SECRET_KEY를 SIGNING_KEY로 사용함
+    'AUTH_HEADER_TYPES': ('Bearer',), # 토큰의 헤더가 'Bearer'
+    'TOKEN_USER_CLASS': 'accounts.User'
+}

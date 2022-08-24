@@ -62,6 +62,11 @@ Kakao Pay API 연결
 
 #### 🗃백엔드
 
+- JWT는 기존의 `django-rest-framework-jwt`가 아니라, `djangorestframework-simplejwt`를 사용함. 그 이유는 `django-rest-framework-jwt`의 개발자가 더 이상 자신의 라이브러리를 쓰지 말고 simplejwt를 쓰는 것을 권장하였음
+- TypeError: Object of type User is not JSON serializable 에러를 해결 못하겠음...
+  - user를 직접 json화 하였음
+  - 이제 데이터가 잘 들어가야함....
+
 <br>
 
 #### 🖼프론트엔드
